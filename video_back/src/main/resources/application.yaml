@@ -1,0 +1,38 @@
+server:
+  port: 9999
+
+spring:
+  thymeleaf:
+    cache: false
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+  redis:
+    host: 118.31.104.131
+    port: 6379
+    jedis:
+      pool:
+        max-wait: 2000ms
+        min-idle: 2
+        max-idle: 8
+        max-active: 10
+    password: 928457
+
+  datasource:
+    username: root
+    password: 928457
+    url: jdbc:mysql://118.31.104.131:3306/video?useSSL=false&serverTimezone=UTC&connectTimeout=60000&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+
+pagehelper:
+  reasonable: true
+  support-methods-arguments: true
+  helperDialect: mysql
+

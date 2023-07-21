@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.video_back.mapper.KindMapper">
+
+    <insert id="batchAddKinds" parameterType="java.util.List">
+        INSERT INTO movie_kind (movie_id, kind) VALUES
+        <foreach collection="list" item="item" separator=",">
+           (#{item.movie_id},#{item.kind})
+        </foreach>
+    </insert>
+</mapper>

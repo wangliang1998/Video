@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.video_back.mapper.MovieMapper">
+
+    <insert id="batchAddMovies" parameterType="java.util.List">
+        INSERT INTO movies (id,name,actors,information,picture_url,movie_url,jiexi_url,area,score,popular,language,time,director) VALUES
+        <foreach collection="list" item="movie" separator=",">
+            (#{movie.id},#{movie.name},#{movie.actors},#{movie.information},#{movie.picture_url},#{movie.movie_url},#{movie.jiexi_url},#{movie.area},#{movie.score},#{movie.popular},#{movie.language},#{movie.time},#{movie.director})
+        </foreach>
+    </insert>
+
+    <select id="search_Movies" resultType="com.example.video_back.pojo.Movie">
+        select * from movies
+        <where>
+            <if test="keys != null and keys != ''">
+                Match(`name`) Against (CONCAT('*', #{keys}, '*') IN BOOLEAN MODE)
+                or Match(actors) Against (CONCAT('*', #{keys}, '*') IN BOOLEAN MODE)
+                or Match(information) Against (CONCAT('*', #{keys}, '*') IN BOOLEAN MODE)
+            </if>
+        </where>
+    </select>
+
+
+    <select id="get_Area_Movies" resultType="com.example.video_back.pojo.Movie">
+        select * from movies where area like
+        <choose>
+            <when test="aid==1">'%中国%'</when>
+            <when test="aid==2">'%美国%'</when>
+            <when test="aid==3">'%韩国%'</when>
+            <when test="aid==4">'%日本%'</when>
+            <when test="aid==5">'%英国%'</when>
+            <when test="aid==6">'%其他%'</when>
+        </choose>
+
+    </select>
+
+    <select id="get_Language_Movies" resultType="com.example.video_back.pojo.Movie">
+        select * from movies where language like
+        <choose>
+            <when test="lid==1">'%普通话%'</when>
+            <when test="lid==2">'%粤语%'</when>
+            <when test="lid==3">'%英语%'</when>
+            <when test="lid==4">'%韩语%'</when>
+            <when test="lid==5">'%日语%'</when>
+            <when test="lid==6">'%其他%'</when>
+        </choose>
+    </select>
+
+
+</mapper>
