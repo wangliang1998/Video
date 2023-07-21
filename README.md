@@ -12,6 +12,9 @@
 ### 前端技术：Vue+Element+Axios
 ### 后端技术：SpringBoot+MySQL+Redis+Mybatis+Jsoup
 
+## 微服务架构
+https://github.com/wangliang1998/VideoCloud
+
 ## 项目演示
 #### 登录
 ![image](https://github.com/wangliang1998/VideoCloud/assets/65017081/f57addee-1313-4aee-949e-bdb1cfc3f4bf)
